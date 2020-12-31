@@ -53,16 +53,12 @@ class MessagesController extends Controller
         $route = (in_array(\Request::route()->getName(), ['user', config('chatify.path')]))
             ? 'user'
             : \Request::route()->getName();
-
-        $friends = User::all();
-
         // prepare id
         return view('Chatify::pages.app', [
             'id' => ($id == null) ? 0 : $route . '_' . $id,
             'route' => $route,
             'messengerColor' => Auth::user()->messenger_color,
             'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',
-            'friends' => $friends,
         ]);
     }
 
